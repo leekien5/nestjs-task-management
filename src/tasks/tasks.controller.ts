@@ -19,7 +19,6 @@ export class TasksController {
     }
 
     @Post()
-    @UsePipes(ValidationPipe)
     createTask(@Body() createTaskDto: CreateTaskDto): Task {
         return this.tasksService.createTask(createTaskDto);
     }
@@ -32,7 +31,7 @@ export class TasksController {
     @Patch('/:id/status')
     updateTaskStatus(
         @Param('id') id: string,
-        @Body('status', TaskStatusValidationPipe) status: TaskStatus,
+        @Body('status') status: TaskStatus,
     ): Task {
        return this.tasksService.updateTaskStatus(id, status);
     }
